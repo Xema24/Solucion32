@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05a2833dfa0d4deeb2c13c9ccb941129" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="EmulatorModel.Cliente" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmulatorModel.Cliente_Juego" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmulatorModel.Desarrollador" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmulatorModel.Distribuidor" Width="1.5" PointX="0.875" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmulatorModel.Juego" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmulatorModel.Plataforma" Width="1.5" PointX="0.875" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmulatorModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="EmulatorModel.FK_Cliente_Juego_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="EmulatorModel.FK_Cliente_Juego_Juego" ManuallyRouted="false" />
+        <AssociationConnector Association="EmulatorModel.FK_Juego_Desarrollador" ManuallyRouted="false" />
+        <AssociationConnector Association="EmulatorModel.FK_Juego_Distribuidor" ManuallyRouted="false" />
+        <AssociationConnector Association="EmulatorModel.FK_Juego_Plataforma" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
