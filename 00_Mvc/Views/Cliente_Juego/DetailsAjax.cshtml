@@ -1,11 +1,9 @@
 ﻿@model _04_Data.Datos.Cliente_Juego
 
-@{
-    ViewBag.Title = "Details";
-}
+
 
 <h2>Details</h2>
-@*<div id=”PeliculaMvcPartialView”> </div>*@
+@*<div id=”Cliente_JuegoMvcPartialView”> </div>*@
 <div id="Cliente_JuegoOtraPartialView"> </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
@@ -18,11 +16,11 @@
 <script type="text/javascript">
 
     document.body.onload = function () {
-        pelicula(@miId, 0);
+        Cliente_JuegoApi(@miId, 0);
     }
 
-    function pelicula(param1, param2) {
-        var apiUrl = 'https://localhost:44357/Api/Cliente_Juego/';
+    function Cliente_JuegoApi(param1, param2) {
+        var apiUrl = 'https://localhost:44357/Api/Cliente_JuegoApi/';
 
         if (param1 > 0) {
             //apiUrl = apiUrl + "/" + param1 + "/" + siguente;
@@ -40,16 +38,16 @@
                     //data: No es necesario: Es GET
                     //el objeto nos muestra lo que le ha devuelto la api como parámetro: "res"
                 }).done(function (res) {
-                    //Enviamos el jSon "res" al peliculasMvcController
-                    //método: _peliculaMvcOtraPartialView(res)
+                    //Enviamos el jSon "res" al Cliente_JuegosMvcController
+                    //método: _Cliente_JuegoMvcOtraPartialView(res)
                     $.ajax(
                         {
                             type: "POST", //HTTP POST Method
-                            //url: "_peliculaMvcOtraPartialView", // Controller/View
+                            //url: "_Cliente_JuegoMvcOtraPartialView", // Controller/View
                             url: "../_Cliente_JuegoOtraPartialView", // Controller/View
                             data: res
                             //Nos devuelve una respuesta "resDeLaRes"
-                            //Que es un string con el html de la vista _peliculaMvcOtraPartialView
+                            //Que es un string con el html de la vista _Cliente_JuegoMvcOtraPartialView
                         }).done(function (resDeLaRes) {
                             //Borramos lo que pueda haber en todos los div de la Class = miClase
                             //$('.miClase').empty();

@@ -99,6 +99,21 @@ namespace _00_Mvc.Controllers
             return View(cliente_Juego);
         }
 
+
+        public ActionResult DetailsAjax(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Cliente_Juego cliente_Juego = db.Cliente_Juego.Find(id);
+            if (cliente_Juego == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cliente_Juego);
+
+        }
         // GET: Cliente_Juego/Create
         public ActionResult Create()
         {
@@ -195,7 +210,7 @@ namespace _00_Mvc.Controllers
             }
             base.Dispose(disposing);
         }
-        // POST: Ejercicio/_peliculaMvcOtraPartialView/5
+        // POST: Ejercicio/_Cliente_JuegoMvcOtraPartialView/5
         [HttpPost]
         //[ValidateInput(false)]
         public ActionResult _Cliente_JuegoOtraPartialView(Cliente_Juego cliente_Juego)

@@ -12,17 +12,17 @@ using _04_Data.Datos;
 
 namespace _01_Api.Controllers
 {
-    public class Cliente_JuegoController : ApiController
+    public class Cliente_JuegoApiController : ApiController
     {
         private EmulatorDbContext db = new EmulatorDbContext();
 
-        // GET: api/Cliente_Juegos
+        // GET: api/Cliente_JuegoApi
         public IQueryable<Cliente_Juego> GetCliente_Juego()
         {
             return db.Cliente_Juego;
         }
 
-        // GET: api/Cliente_Juegos/5
+        // GET: api/Cliente_JuegoApi/5
         [ResponseType(typeof(Cliente_Juego))]
         public IHttpActionResult GetCliente_Juego(int id)
         {
@@ -35,7 +35,7 @@ namespace _01_Api.Controllers
             return Ok(cliente_Juego);
         }
 
-        // PUT: api/Cliente_Juegos/5
+        // PUT: api/Cliente_JuegoApi/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCliente_Juego(int id, Cliente_Juego cliente_Juego)
         {
@@ -70,7 +70,7 @@ namespace _01_Api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Cliente_Juegos
+        // POST: api/Cliente_JuegoApi
         [ResponseType(typeof(Cliente_Juego))]
         public IHttpActionResult PostCliente_Juego(Cliente_Juego cliente_Juego)
         {
@@ -85,7 +85,7 @@ namespace _01_Api.Controllers
             return CreatedAtRoute("DefaultApi", new { id = cliente_Juego.id }, cliente_Juego);
         }
 
-        // DELETE: api/Cliente_Juegos/5
+        // DELETE: api/Cliente_JuegoApi/5
         [ResponseType(typeof(Cliente_Juego))]
         public IHttpActionResult DeleteCliente_Juego(int id)
         {
@@ -115,48 +115,45 @@ namespace _01_Api.Controllers
             return db.Cliente_Juego.Count(e => e.id == id) > 0;
         }
 
-
-
         [ResponseType(typeof(Cliente_Juego))]
-        public IHttpActionResult Getpelicula(int? id, int? siguiente)
+        public IHttpActionResult GetCliente_JuegoApi(int? id, int? siguiente)
         {
-            Cliente_Juego peliculaTabla = null;
+            Cliente_Juego cliente_juegoTabla = null;
             if (siguiente == null)
             {
-                peliculaTabla = db.Cliente_Juego.Where(x => x.id == id.Value).FirstOrDefault();
+                cliente_juegoTabla = db.Cliente_Juego.Where(x => x.id == id.Value).FirstOrDefault();
             }
             else
             {
                 if (siguiente.Value == 1)
                 {
-                    peliculaTabla = db.Cliente_Juego.Where(x => x.id > id.Value).FirstOrDefault();
+                    cliente_juegoTabla = db.Cliente_Juego.Where(x => x.id > id.Value).FirstOrDefault();
                 }
                 else
                 {
-                    IList<Cliente_Juego> peliculaTablas = db.Cliente_Juego.Where(x => x.id < id.Value).ToList();
-                    if (peliculaTablas != null && peliculaTablas.Count() > 0)
+                    IList<Cliente_Juego> cliente_juegoTablas = db.Cliente_Juego.Where(x => x.id < id.Value).ToList();
+                    if (cliente_juegoTablas != null && cliente_juegoTablas.Count() > 0)
                     {
-                        int? idpelicula = peliculaTablas.Max(x => x.id);
-                        peliculaTabla = db.Cliente_Juego.Where(x => x.id == idpelicula.Value).FirstOrDefault();
+                        int? idCliente_Juego = cliente_juegoTablas.Max(x => x.id);
+                        cliente_juegoTabla = db.Cliente_Juego.Where(x => x.id == idCliente_Juego.Value).FirstOrDefault();
                     }
                 }
             }
-            if (peliculaTabla == null)
+            if (cliente_juegoTabla == null)
             {
-                peliculaTabla = db.Cliente_Juego.Where(x => x.id == id.Value).FirstOrDefault();
+                cliente_juegoTabla = db.Cliente_Juego.Where(x => x.id == id.Value).FirstOrDefault();
             }
-            Cliente_Juego pelicula = new Cliente_Juego();
-            pelicula.id = peliculaTabla.id;
-            pelicula.id_cliente = peliculaTabla.id_cliente;
-            pelicula.id_juego = peliculaTabla.id_juego;
-            pelicula.Cliente = peliculaTabla.Cliente;
-            pelicula.Juego = peliculaTabla.Juego;
-            
+            Cliente_Juego cliente_juego = new Cliente_Juego();
+            cliente_juego.id = cliente_juegoTabla.id;
+            cliente_juego.id_cliente = cliente_juegoTabla.id_cliente;
+            cliente_juego.id_juego = cliente_juegoTabla.id_juego;
+            cliente_juego.Cliente = cliente_juegoTabla.Cliente;
+            cliente_juego.Juego = cliente_juegoTabla.Juego;
+           
 
-            return Ok(pelicula);
+
+
+            return Ok(cliente_juego);
         }
-
-
-
     }
 }
