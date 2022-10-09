@@ -195,17 +195,12 @@ namespace _00_Mvc.Controllers
             }
             base.Dispose(disposing);
         }
-        // GET: api/Empleados/5 
+        // POST: Ejercicio/_peliculaMvcOtraPartialView/5
         [HttpPost]
-
-        //[ValidateInput(false)] 
-
-        public ActionResult _Cliente_JuegoOtraPartialView(Cliente_Juego cliente_juego)
-
+        //[ValidateInput(false)]
+        public ActionResult _Cliente_JuegoOtraPartialView(Cliente_Juego cliente_Juego)
         {
-
-            return View("_Cliente_JuegoOtraPartialView", cliente_juego);
-
+            return View("_Cliente_JuegoOtraPartialView", cliente_Juego);
         }
 
     }

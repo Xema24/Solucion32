@@ -12,7 +12,7 @@ using _04_Data.Datos;
 
 namespace _01_Api.Controllers
 {
-    public class Cliente_JuegosController : ApiController
+    public class Cliente_JuegoController : ApiController
     {
         private EmulatorDbContext db = new EmulatorDbContext();
 
@@ -114,84 +114,49 @@ namespace _01_Api.Controllers
         {
             return db.Cliente_Juego.Count(e => e.id == id) > 0;
         }
+
+
+
         [ResponseType(typeof(Cliente_Juego))]
-
-
-
-
-
-        public IHttpActionResult GetCliente_Juego(int? id, int? siguiente)
-
+        public IHttpActionResult Getpelicula(int? id, int? siguiente)
         {
-
-            Cliente_Juego cliente_juego = null;
-
+            Cliente_Juego peliculaTabla = null;
             if (siguiente == null)
-
             {
-
-                cliente_juego = db.Cliente_Juego.Where(x => x.id == id.Value).FirstOrDefault();
-
+                peliculaTabla = db.Cliente_Juego.Where(x => x.id == id.Value).FirstOrDefault();
             }
-
             else
-
             {
-
                 if (siguiente.Value == 1)
-
                 {
-
-                    cliente_juego = db.Cliente_Juego.Where(x => x.id > id.Value).FirstOrDefault();
-
+                    peliculaTabla = db.Cliente_Juego.Where(x => x.id > id.Value).FirstOrDefault();
                 }
-
                 else
-
                 {
-
-                    IList<Cliente_Juego> cliente_juegos = db.Cliente_Juego.Where(x => x.id < id.Value).ToList();
-
-                    if (cliente_juegos != null && cliente_juegos.Count() > 0)
-
+                    IList<Cliente_Juego> peliculaTablas = db.Cliente_Juego.Where(x => x.id < id.Value).ToList();
+                    if (peliculaTablas != null && peliculaTablas.Count() > 0)
                     {
-
-                        int? idEmpleado = cliente_juegos.Max(x => x.id);
-
-                        cliente_juego = db.Cliente_Juego.Where(x => x.id == idEmpleado.Value).FirstOrDefault();
-
+                        int? idpelicula = peliculaTablas.Max(x => x.id);
+                        peliculaTabla = db.Cliente_Juego.Where(x => x.id == idpelicula.Value).FirstOrDefault();
                     }
-
                 }
-
             }
-
-            if (cliente_juego == null)
-
+            if (peliculaTabla == null)
             {
-
-                cliente_juego = db.Cliente_Juego.Where(x => x.id == id.Value).FirstOrDefault();
-
+                peliculaTabla = db.Cliente_Juego.Where(x => x.id == id.Value).FirstOrDefault();
             }
+            Cliente_Juego pelicula = new Cliente_Juego();
+            pelicula.id = peliculaTabla.id;
+            pelicula.id_cliente = peliculaTabla.id_cliente;
+            pelicula.id_juego = peliculaTabla.id_juego;
+            pelicula.Cliente = peliculaTabla.Cliente;
+            pelicula.Juego = peliculaTabla.Juego;
+            
 
-            Cliente_Juego cliente_juegoTabla = new Cliente_Juego();
-
-            cliente_juegoTabla.id = cliente_juego.id;
-
-            cliente_juegoTabla.id_cliente = cliente_juego.id_cliente;
-
-            cliente_juegoTabla.id_juego = cliente_juego.id_juego;
-
-            cliente_juegoTabla.Juego = cliente_juego.Juego;
-
-            cliente_juegoTabla.Cliente = cliente_juego.Cliente;
-
-
-
-
-
-            return Ok(cliente_juegoTabla);
-
+            return Ok(pelicula);
         }
+
+
+
     }
 }

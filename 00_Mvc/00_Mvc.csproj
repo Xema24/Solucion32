@@ -272,6 +272,7 @@
     <Content Include="Views\Cliente_Juego\Edit.cshtml" />
     <Content Include="Views\Cliente_Juego\Index.cshtml" />
     <Content Include="Views\Cliente_Juego\_Cliente_JuegoOtraPartialView.cshtml" />
+    <Content Include="Views\Cliente_Juego\DetailsAjax.cshtml" />
     <None Include="Views\Home\browse.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
